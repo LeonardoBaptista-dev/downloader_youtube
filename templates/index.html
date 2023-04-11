@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Download de Vídeos do YouTube</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+	<div class="container">
+		<h1>Download de Vídeos do YouTube</h1>
+		<form method="post" action="{{ url_for('index') }}">
+			<div class="form-group">
+				<label for="url">URL do vídeo:</label>
+				<input type="text" name="url" class="form-control" required>
+			</div>
+			<div class="form-group">
+				<label for="formato">Formato:</label>
+				<select name="formato" class="form-control" required>
+					<option value="mp3">MP3</option>
+					<option value="mp4">MP4 (Full HD)</option>
+					
+				</select>
+			</div>
+			<button type="submit" class="btn btn-primary">Download</button>
+		</form>
+		{% if resultado %}
+		<div class="resultado">
+			{{ resultado }}
+			{% if filename %}
+			<a href="{{ url_for('download', filename=filename) }}">Baixar arquivo</a>
+			{% endif %}
+		</div>
+		{% endif %}
+	</div>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
